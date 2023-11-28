@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Around the US</title>
+    <link rel="stylesheet" href="./vendor/normalize.css" />
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./vendor/fonts/fonts.css" />
+  </head>
+  <body>
+    <page class="page"
+      ><header class="header">
+        <img
+          src="./images/headerlogo.svg"
+          alt="encabezado"
+          class="header__logo"
+        />
+        <div class="header__line"></div>
+      </header>
+      <section class="profile">
+        <img
+          src="./images/profilephoto.jpg"
+          alt="foto de perfil"
+          class="profile__picture"
+        />
+        <div class="profile__container">
+          <h1 class="profile__name">Jaques Cousteau</h1>
+          <button type="button" class="profile__button"></button>
+          <h2 class="profile__about-me">Explorador</h2>
+        </div>
+        <button type="button" class="profile__add-button"></button>
+      </section>
+      <section class="elements">
+        <div class="elements__container">
+          <img
+            class="elements__image"
+            src="./images/brooklyn.jpg"
+            alt="puente de Brooklyn"
+          />
+          <div class="elements__description">
+            <h3 class="elements__text">Puente de Brooklyn</h3>
+            <button class="elements__heart"></button>
+          </div>
+        </div>
+        <div class="elements__container">
+          <img
+            class="elements__image"
+            src="./images/timessquare.jpg"
+            alt="Times Square"
+          />
+          <div class="elements__description">
+            <h3 class="elements__text">Times Square</h3>
+            <button class="elements__heart"></button>
+          </div>
+        </div>
+        <div class="elements__container">
+          <img
+            class="elements__image"
+            src="./images/hollywood.jpg"
+            alt="Hollywood"
+          />
+          <div class="elements__description">
+            <h3 class="elements__text">Hollywood</h3>
+            <button class="elements__heart"></button>
+          </div>
+        </div>
+        <div class="elements__container">
+          <img
+            class="elements__image"
+            src="./images/cloudgate.jpg"
+            alt="Cloud Gate"
+          />
+          <div class="elements__description">
+            <h3 class="elements__text">Cloud Gate</h3>
+            <button class="elements__heart"></button>
+          </div>
+        </div>
+        <div class="elements__container">
+          <img
+            class="elements__image"
+            src="./images/Santamonica.jpg"
+            alt="Santa Mónica, California"
+          />
+          <div class="elements__description">
+            <h3 class="elements__text">Santa Mónica, California</h3>
+            <button class="elements__heart"></button>
+          </div>
+        </div>
+        <div class="elements__container">
+          <img
+            class="elements__image"
+            src="./images/goldengate.jpg"
+            alt="Golden Gate"
+          />
+          <div class="elements__description">
+            <h3 class="elements__text">Golden Gate, San Francisco</h3>
+            <button class="elements__heart"></button>
+          </div>
+        </div>
+      </section>
+      <footer class="footer">
+        <h4 class="footer__copyright">&#169; 2023 Around The U.S.</h4>
+      </footer>
+      <form class="form">
+        <button type="button" class="form__close-button"></button>
+        <h4 class="form__title">Editar perfil</h4>
+        <input
+          type="text"
+          name="name"
+          id="name"
+          placeholder="Nombre"
+          class="form__name"
+        />
+        <span class="form__line"></span>
+        <input
+          type="text"
+          name="occupation"
+          id="occupation"
+          placeholder="Acerca de mí"
+          class="form__occupation"
+        />
+        <span class="form__line"></span>
+        <button class="form__button">Guardar</button>
+      </form>
+    </page>
+  </body>
+</html>
