@@ -18,6 +18,6 @@
 
 ###### La visualización de algunos elementos podría variar dependiendo el navegador y versión que se utilice ya que el proyecto aún no cuenta con los prefijos necesarios para una mejor experiencia, lo que pretendo arreglar en un futuro.
 
-Pueden visualizar mi página en Github pages en la siguiente dirección: https://gabrielislas1404.github.io/web_project_homeland/
+Pueden visualizar mi página en Github pages en la siguiente dirección: https://gabrielislas1404.github.io/web_project_around/
 
 Gabriel Islas García
