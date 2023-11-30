@@ -4,13 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Around the US</title>
-    <link rel="stylesheet" href="./vendor/normalize.css" />
-    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./pages/index.css" />
     <link rel="stylesheet" href="./vendor/fonts/fonts.css" />
   </head>
   <body>
-    <page class="page"
-      ><header class="header">
+    <div class="page">
+      <header class="header">
         <img
           src="./images/headerlogo.svg"
           alt="encabezado"
@@ -25,7 +24,7 @@
           class="profile__picture"
         />
         <div class="profile__container">
-          <h1 class="profile__name">Jaques Cousteau</h1>
+          <h1 class="profile__name">Jacques Cousteau</h1>
           <button type="button" class="profile__button"></button>
           <h2 class="profile__about-me">Explorador</h2>
         </div>
@@ -102,27 +101,31 @@
       <footer class="footer">
         <h4 class="footer__copyright">&#169; 2023 Around The U.S.</h4>
       </footer>
-      <form class="form">
-        <button type="button" class="form__close-button"></button>
-        <h4 class="form__title">Editar perfil</h4>
-        <input
-          type="text"
-          name="name"
-          id="name"
-          placeholder="Nombre"
-          class="form__name"
-        />
-        <span class="form__line"></span>
-        <input
-          type="text"
-          name="occupation"
-          id="occupation"
-          placeholder="Acerca de mí"
-          class="form__occupation"
-        />
-        <span class="form__line"></span>
-        <button class="form__button">Guardar</button>
-      </form>
-    </page>
+      <div class="popup popup_hide">
+        <div class="popup__overlay"></div>
+        <form class="popup__content">
+          <button type="button" class="popup__close-button"></button>
+          <h4 class="popup__title">Editar perfil</h4>
+          <input
+            type="text"
+            name="name"
+            id="name"
+            placeholder="Nombre"
+            class="popup__name"
+          />
+          <span class="popup__line"></span>
+          <input
+            type="text"
+            name="occupation"
+            id="occupation"
+            placeholder="Acerca de mí"
+            class="popup__occupation"
+          />
+          <span class="popup__line"></span>
+          <button class="popup__save-button">Guardar</button>
+        </form>
+      </div>
+    </div>
+    <script src="./index.js"></script>
   </body>
 </html>
