@@ -14,11 +14,28 @@
   width: 282px;
   height: 361px;
   overflow: hidden;
+  position: relative;
 }
 
 .elements__image {
   width: 282px;
   height: 282px;
+}
+
+.elements__trash {
+  background: url(../../images/Trashelement.svg) no-repeat center;
+  background-size: contain;
+  border: none;
+  width: 18px;
+  height: 19.3px;
+  position: absolute;
+  top: 18px;
+  right: 15px;
+  cursor: pointer;
+}
+
+.elements__trash:hover {
+  opacity: 0.6;
 }
 
 .elements__description {

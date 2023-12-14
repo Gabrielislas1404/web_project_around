@@ -29,19 +29,23 @@
         </div>
         <button type="button" class="profile__add-button"></button>
       </section>
+      <!----
       <section class="elements">
         <div class="elements__container">
+          <button class="elements__trash"></button>
           <img
             class="elements__image"
             src="./images/brooklyn.jpg"
             alt="puente de Brooklyn"
           />
+         
           <div class="elements__description">
             <h3 class="elements__text">Puente de Brooklyn</h3>
             <button class="elements__heart"></button>
           </div>
         </div>
         <div class="elements__container">
+          <button class="elements__trash"></button>
           <img
             class="elements__image"
             src="./images/timessquare.jpg"
@@ -53,6 +57,7 @@
           </div>
         </div>
         <div class="elements__container">
+          <button class="elements__trash"></button>
           <img
             class="elements__image"
             src="./images/hollywood.jpg"
@@ -64,6 +69,7 @@
           </div>
         </div>
         <div class="elements__container">
+          <button class="elements__trash"></button>
           <img
             class="elements__image"
             src="./images/cloudgate.jpg"
@@ -75,6 +81,7 @@
           </div>
         </div>
         <div class="elements__container">
+          <button class="elements__trash"></button>
           <img
             class="elements__image"
             src="./images/Santamonica.jpg"
@@ -86,6 +93,7 @@
           </div>
         </div>
         <div class="elements__container">
+          <button class="elements__trash"></button>
           <img
             class="elements__image"
             src="./images/goldengate.jpg"
@@ -97,6 +105,8 @@
           </div>
         </div>
       </section>
+      -->
+      <section class="elements"></section>
       <footer class="footer">
         <h4 class="footer__copyright">&#169; 2023 Around The U.S.</h4>
       </footer>
@@ -124,7 +134,42 @@
           <button class="popup__save-button">Guardar</button>
         </form>
       </div>
+      <div class="popup popup_add-button popup_hide">
+        <div class="popup__overlay"></div>
+        <form class="popup__content">
+          <button type="button" class="popup__close-button"></button>
+          <h4 class="popup__title">Nuevo lugar</h4>
+          <input
+            type="text"
+            name="título"
+            id="título"
+            placeholder="Título"
+            class="popup__name"
+          />
+          <span class="popup__line"></span>
+          <input
+            type="text"
+            name="enlace"
+            id="enlace"
+            placeholder="Enlace a la imágen"
+            class="popup__occupation"
+          />
+          <span class="popup__line"></span>
+          <button class="popup__save-button">Crear</button>
+        </form>
+      </div>
     </div>
+
+    <template id="card-template">
+      <div class="elements__container">
+        <img class="elements__image" src="" alt="" />
+        <div class="elements__description">
+          <h3 class="elements__text"></h3>
+          <button class="elements__heart"></button>
+          <button class="elements__trash"></button>
+        </div>
+      </div>
+    </template>
     <script src="./index.js"></script>
   </body>
 </html>
