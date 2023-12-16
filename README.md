@@ -13,12 +13,14 @@
 - La mayor parte de esta página web fue desarrollada con Flexbox, además de ser una página responsiva, tomando como base la resolución de pantalla 320px y que se pueda adaptar a varios tamaños hasta llegar a los 1280px.
   El propósito principal de este proyecto es familiarizarme y entender los conceptos básicos de JavaScript.
 
-  Las funcionalidades con JS son:
-  1.Hacer click en el botón con figura de lápiz para poder abrir y rellenar el formulario con nombre y ocupación. (Los datos se actualizan al presionar el botón "Guardar").
-  2.Hacer click en el botón rectangular con una cruz enmedio para poder abrir y rellenar el formulario que permite agregar una nueva foto con su descripción a la sección principal de la página.
-  3.Darle like a las fotos con la figura en forma de corazón
-  4.Poder abrir cada imágen en una ventana modal haciendo click en ellas.
-  5.Borrar las imágenes haciendo click en el bote de basura.
+#### La sección de fotografías, su descripción, el ícono de eliminar y el botón de like estan creadas apartir de etiquetas Template en html y desarrollado en JS.
+
+Las funcionalidades con JS son:
+1.Hacer click en el botón con figura de lápiz para poder abrir y rellenar el formulario con nombre y ocupación. (Los datos se actualizan al presionar el botón "Guardar").
+2.Hacer click en el botón rectangular con una cruz enmedio para poder abrir y rellenar el formulario que permite agregar una nueva foto con su descripción a la sección principal de la página.
+3.Darle like a las fotos con la figura en forma de corazón
+4.Poder abrir cada imágen en una ventana modal haciendo click en ellas.
+5.Borrar las imágenes haciendo click en el bote de basura.
 
 ##### El proyecto ha sido realizado en VSS (Visual Studio Code) y visualizado con mi navegador Google Chrome Versión 116.0.5845.187 (Build oficial) (x86_64)
 
