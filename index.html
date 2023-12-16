@@ -29,88 +29,14 @@
         </div>
         <button type="button" class="profile__add-button"></button>
       </section>
-      <!----
-      <section class="elements">
-        <div class="elements__container">
-          <button class="elements__trash"></button>
-          <img
-            class="elements__image"
-            src="./images/brooklyn.jpg"
-            alt="puente de Brooklyn"
-          />
-         
-          <div class="elements__description">
-            <h3 class="elements__text">Puente de Brooklyn</h3>
-            <button class="elements__heart"></button>
-          </div>
-        </div>
-        <div class="elements__container">
-          <button class="elements__trash"></button>
-          <img
-            class="elements__image"
-            src="./images/timessquare.jpg"
-            alt="Times Square"
-          />
-          <div class="elements__description">
-            <h3 class="elements__text">Times Square</h3>
-            <button class="elements__heart"></button>
-          </div>
-        </div>
-        <div class="elements__container">
-          <button class="elements__trash"></button>
-          <img
-            class="elements__image"
-            src="./images/hollywood.jpg"
-            alt="Hollywood"
-          />
-          <div class="elements__description">
-            <h3 class="elements__text">Hollywood</h3>
-            <button class="elements__heart"></button>
-          </div>
-        </div>
-        <div class="elements__container">
-          <button class="elements__trash"></button>
-          <img
-            class="elements__image"
-            src="./images/cloudgate.jpg"
-            alt="Cloud Gate"
-          />
-          <div class="elements__description">
-            <h3 class="elements__text">Cloud Gate</h3>
-            <button class="elements__heart"></button>
-          </div>
-        </div>
-        <div class="elements__container">
-          <button class="elements__trash"></button>
-          <img
-            class="elements__image"
-            src="./images/Santamonica.jpg"
-            alt="Santa Mónica, California"
-          />
-          <div class="elements__description">
-            <h3 class="elements__text">Santa Mónica, California</h3>
-            <button class="elements__heart"></button>
-          </div>
-        </div>
-        <div class="elements__container">
-          <button class="elements__trash"></button>
-          <img
-            class="elements__image"
-            src="./images/goldengate.jpg"
-            alt="Golden Gate"
-          />
-          <div class="elements__description">
-            <h3 class="elements__text">Golden Gate, San Francisco</h3>
-            <button class="elements__heart"></button>
-          </div>
-        </div>
-      </section>
-      -->
+
       <section class="elements"></section>
+
       <footer class="footer">
         <h4 class="footer__copyright">&#169; 2023 Around The U.S.</h4>
       </footer>
-      <div class="popup popup_hide">
+
+      <div class="popup">
         <div class="popup__overlay"></div>
         <form class="popup__content">
           <button type="button" class="popup__close-button"></button>
@@ -120,7 +46,7 @@
             name="name"
             id="name"
             placeholder="Nombre"
-            class="popup__name"
+            class="popup__input popup__input_name"
           />
           <span class="popup__line"></span>
           <input
@@ -128,35 +54,48 @@
             name="occupation"
             id="occupation"
             placeholder="Acerca de mí"
-            class="popup__occupation"
+            class="popup__input popup__input_occupation"
           />
           <span class="popup__line"></span>
           <button class="popup__save-button">Guardar</button>
         </form>
       </div>
-      <div class="popup popup_add-button popup_hide">
+
+      <div class="popup popup_add-button">
         <div class="popup__overlay"></div>
-        <form class="popup__content">
+        <form class="popup__content popup__content_add">
           <button type="button" class="popup__close-button"></button>
           <h4 class="popup__title">Nuevo lugar</h4>
           <input
             type="text"
-            name="título"
-            id="título"
+            name="title"
+            id="title"
             placeholder="Título"
-            class="popup__name"
+            class="popup__input popup__input_title"
           />
           <span class="popup__line"></span>
           <input
-            type="text"
-            name="enlace"
-            id="enlace"
+            type="url"
+            name="link"
+            id="link"
             placeholder="Enlace a la imágen"
-            class="popup__occupation"
+            class="popup__input popup__input_link"
           />
           <span class="popup__line"></span>
           <button class="popup__save-button">Crear</button>
         </form>
+      </div>
+
+      <div class="popup popup__image">
+        <div class="popup__overlay"></div>
+        <div class="popup__image-container">
+          <button
+            type="button"
+            class="popup__close-button popup__close-button_image"
+          ></button>
+          <img src="" alt="imágen" class="popup__picture" />
+          <h4 class="popup__card-name"></h4>
+        </div>
       </div>
     </div>
 
