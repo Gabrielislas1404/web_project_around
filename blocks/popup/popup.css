@@ -164,7 +164,7 @@
 }
 
 @media screen and (min-width: 720px) {
-  .popup__image {
+  .popup_image {
     top: 50px;
     width: 433px;
     height: 540px;
@@ -188,7 +188,7 @@
     top: 165px;
   }
 
-  .popup__image {
+  .popup_image {
     top: 50px;
     width: 816px;
   }

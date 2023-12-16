@@ -21,7 +21,7 @@ const closeAddprofile = popupAdd.querySelector(".popup__close-button");
 const buttonHeart = document.querySelector(".elements__heart");
 
 //variable para imágen de elements
-const popupImage = document.querySelector(".popup__image");
+const popupImage = document.querySelector(".popup_image");
 //variable para cerrar popup de imágen
 const closeImage = popupImage.querySelector(".popup__close-button");
 
