@@ -121,7 +121,10 @@ function createCard(name, link) {
     .querySelector(".elements__container")
     .cloneNode(true);
   //<img class="elements__image" src="" alt="" />
-  const cardImage = (cardElement.querySelector(".elements__image").src = link);
+  const cardImage = cardElement.querySelector(".elements__image");
+  cardImage.src = link;
+  cardImage.setAttribute("alt", name);
+
   // <h3 class="elements__text"></h3>
   const cardText = (cardElement.querySelector(".elements__text").textContent =
     name);

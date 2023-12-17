@@ -41,7 +41,7 @@
 
 .elements__description {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 .elements__text {
@@ -51,6 +51,7 @@
   font-style: normal;
   font-weight: 900;
   line-height: normal;
+  width: 239px;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -60,7 +61,7 @@
   background: url(../../images/elementsheart.svg) no-repeat center;
   background-size: contain;
   margin-right: 15px;
-  width: 20.759px;
+  width: 21px;
   cursor: pointer;
   border: #000;
 }

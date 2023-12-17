@@ -6,102 +6,100 @@
     <title>Around the US</title>
     <link rel="stylesheet" href="./pages/index.css" />
   </head>
-  <body>
-    <div class="page">
-      <header class="header">
-        <img
-          src="./images/headerlogo.svg"
-          alt="encabezado"
-          class="header__logo"
-        />
-        <div class="header__line"></div>
-      </header>
-      <section class="profile">
-        <img
-          src="./images/profilephoto.jpg"
-          alt="foto de perfil"
-          class="profile__picture"
-        />
-        <div class="profile__container">
-          <h1 class="profile__name">Jacques Cousteau</h1>
-          <button type="button" class="profile__button"></button>
-          <h2 class="profile__about-me">Explorador</h2>
-        </div>
-        <button type="button" class="profile__add-button"></button>
-      </section>
-
-      <section class="elements"></section>
-
-      <footer class="footer">
-        <h4 class="footer__copyright">&#169; 2023 Around The U.S.</h4>
-      </footer>
-
-      <div class="popup">
-        <div class="popup__overlay"></div>
-        <form class="popup__content">
-          <button type="button" class="popup__close-button"></button>
-          <h4 class="popup__title">Editar perfil</h4>
-          <input
-            type="text"
-            name="name"
-            id="name"
-            placeholder="Nombre"
-            class="popup__input popup__input_name"
-          />
-          <span class="popup__line"></span>
-          <input
-            type="text"
-            name="occupation"
-            id="occupation"
-            placeholder="Acerca de mí"
-            class="popup__input popup__input_occupation"
-          />
-          <span class="popup__line"></span>
-          <button class="popup__save-button">Guardar</button>
-        </form>
+  <body class="page">
+    <header class="header">
+      <img
+        src="./images/headerlogo.svg"
+        alt="encabezado"
+        class="header__logo"
+      />
+      <div class="header__line"></div>
+    </header>
+    <section class="profile">
+      <img
+        src="./images/profilephoto.jpg"
+        alt="foto de perfil"
+        class="profile__picture"
+      />
+      <div class="profile__container">
+        <h1 class="profile__name">Jacques Cousteau</h1>
+        <button type="button" class="profile__button"></button>
+        <h2 class="profile__about-me">Explorador</h2>
       </div>
+      <button type="button" class="profile__add-button"></button>
+    </section>
 
-      <div class="popup popup_add-button">
-        <div class="popup__overlay"></div>
-        <form class="popup__content popup__content_add">
-          <button type="button" class="popup__close-button"></button>
-          <h4 class="popup__title">Nuevo lugar</h4>
-          <input
-            type="text"
-            name="title"
-            id="title"
-            placeholder="Título"
-            class="popup__input popup__input_title"
-          />
-          <span class="popup__line"></span>
-          <input
-            type="url"
-            name="link"
-            id="link"
-            placeholder="Enlace a la imágen"
-            class="popup__input popup__input_link"
-          />
-          <span class="popup__line"></span>
-          <button class="popup__save-button">Crear</button>
-        </form>
-      </div>
+    <section class="elements"></section>
 
-      <div class="popup popup_image">
-        <div class="popup__overlay"></div>
-        <div class="popup__image-container">
-          <button
-            type="button"
-            class="popup__close-button popup__close-button_image"
-          ></button>
-          <img src=" " alt="imágen" class="popup__picture" />
-          <h4 class="popup__card-name"></h4>
-        </div>
+    <footer class="footer">
+      <h4 class="footer__copyright">&#169; 2023 Around The U.S.</h4>
+    </footer>
+
+    <div class="popup">
+      <div class="popup__overlay"></div>
+      <form class="popup__content">
+        <button type="button" class="popup__close-button"></button>
+        <h4 class="popup__title">Editar perfil</h4>
+        <input
+          type="text"
+          name="name"
+          id="name"
+          placeholder="Nombre"
+          class="popup__input popup__input_name"
+        />
+        <span class="popup__line"></span>
+        <input
+          type="text"
+          name="occupation"
+          id="occupation"
+          placeholder="Acerca de mí"
+          class="popup__input popup__input_occupation"
+        />
+        <span class="popup__line"></span>
+        <button class="popup__save-button">Guardar</button>
+      </form>
+    </div>
+
+    <div class="popup popup_add-button">
+      <div class="popup__overlay"></div>
+      <form class="popup__content popup__content_add">
+        <button type="button" class="popup__close-button"></button>
+        <h4 class="popup__title">Nuevo lugar</h4>
+        <input
+          type="text"
+          name="title"
+          id="title"
+          placeholder="Título"
+          class="popup__input popup__input_title"
+        />
+        <span class="popup__line"></span>
+        <input
+          type="url"
+          name="link"
+          id="link"
+          placeholder="Enlace a la imágen"
+          class="popup__input popup__input_link"
+        />
+        <span class="popup__line"></span>
+        <button class="popup__save-button">Crear</button>
+      </form>
+    </div>
+
+    <div class="popup popup_image">
+      <div class="popup__overlay"></div>
+      <div class="popup__image-container">
+        <button
+          type="button"
+          class="popup__close-button popup__close-button_image"
+        ></button>
+        <img src=" " alt=" " class="popup__picture" />
+        <h4 class="popup__card-name"></h4>
       </div>
     </div>
 
     <template id="card-template">
       <div class="elements__container">
-        <img class="elements__image" src=" " alt="" />
+        <img class="elements__image" src=" " alt=" " />
         <div class="elements__description">
           <h3 class="elements__text"></h3>
           <button class="elements__heart"></button>
