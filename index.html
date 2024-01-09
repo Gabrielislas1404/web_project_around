@@ -37,7 +37,7 @@
 
     <div class="popup">
       <div class="popup__overlay"></div>
-      <form class="popup__content">
+      <form class="popup__content" novalidate>
         <button type="button" class="popup__close-button"></button>
         <h4 class="popup__title">Editar perfil</h4>
         <input
@@ -45,6 +45,9 @@
           name="name"
           id="name"
           placeholder="Nombre"
+          minlength="2"
+          maxlength="40"
+          required
           class="popup__input popup__input_name"
         />
         <span class="popup__line"></span>
@@ -53,16 +56,19 @@
           name="occupation"
           id="occupation"
           placeholder="Acerca de mí"
+          minlength="2"
+          maxlength="200"
+          required
           class="popup__input popup__input_occupation"
         />
         <span class="popup__line"></span>
-        <button class="popup__save-button">Guardar</button>
+        <button type="submit" class="popup__save-button">Guardar</button>
       </form>
     </div>
 
     <div class="popup popup_add-button">
       <div class="popup__overlay"></div>
-      <form class="popup__content popup__content_add">
+      <form class="popup__content popup__content_add" novalidate>
         <button type="button" class="popup__close-button"></button>
         <h4 class="popup__title">Nuevo lugar</h4>
         <input
@@ -70,6 +76,9 @@
           name="title"
           id="title"
           placeholder="Título"
+          minlength="2"
+          maxlength="30"
+          required
           class="popup__input popup__input_title"
         />
         <span class="popup__line"></span>
@@ -78,6 +87,7 @@
           name="link"
           id="link"
           placeholder="Enlace a la imágen"
+          required
           class="popup__input popup__input_link"
         />
         <span class="popup__line"></span>
