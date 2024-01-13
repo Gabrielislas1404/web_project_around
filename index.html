@@ -43,14 +43,14 @@
         <input
           type="text"
           name="name"
-          id="name"
+          id="input-name"
           placeholder="Nombre"
           minlength="2"
           maxlength="40"
           required
           class="popup__input popup__input_name"
         />
-        <span class="popup__line"></span>
+        <span class="popup__line" id="input__error-name"></span>
         <input
           type="text"
           name="occupation"
@@ -61,8 +61,10 @@
           required
           class="popup__input popup__input_occupation"
         />
-        <span class="popup__line"></span>
-        <button type="submit" class="popup__save-button">Guardar</button>
+        <span class="popup__line" id="input__error-occupation"></span>
+        <button disabled type="submit" class="popup__save-button">
+          Guardar
+        </button>
       </form>
     </div>
 
@@ -79,19 +81,20 @@
           minlength="2"
           maxlength="30"
           required
-          class="popup__input popup__input_title"
+          class="title-input-error popup__input popup__input_title"
         />
-        <span class="popup__line"></span>
+        <span class="popup__line" id="input__error-title"></span>
         <input
           type="url"
           name="link"
           id="link"
           placeholder="Enlace a la imágen"
+          minlength="7"
           required
           class="popup__input popup__input_link"
         />
-        <span class="popup__line"></span>
-        <button class="popup__save-button">Crear</button>
+        <span class="popup__line" id="input__error-link"></span>
+        <button type="submit" class="popup__save-button">Crear</button>
       </form>
     </div>
 
@@ -118,5 +121,6 @@
       </div>
     </template>
     <script src="./index.js"></script>
+    <script src="./validate.js"></script>
   </body>
 </html>

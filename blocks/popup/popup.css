@@ -37,6 +37,7 @@
   width: 100vw;
   height: 100vh;
   min-width: 320px;
+  cursor: pointer;
 }
 
 .popup__content {
@@ -83,7 +84,7 @@
 
 .popup__title {
   margin-top: 25px;
-  margin-bottom: 75px;
+  margin-bottom: 65px;
   width: 238px;
   color: #000;
   font-family: Inter;
@@ -91,6 +92,7 @@
   font-style: normal;
   font-weight: 900;
   line-height: normal;
+  padding-bottom: 5px;
 }
 
 .popup__input {
@@ -104,7 +106,12 @@
   height: 14px;
   border: none;
   outline: none;
-  padding-bottom: 13px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #000;
+}
+
+.popup__input:invalid {
+  border-bottom: 1px solid #f00;
 }
 
 .popup__input_occupation {
@@ -114,12 +121,13 @@
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  margin-top: 30px;
+  margin-top: 45px;
   width: 238px;
   height: 14px;
   border: none;
   outline: none;
-  padding-bottom: 13px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #000;
 }
 
 .popup__input_link {
@@ -129,19 +137,22 @@
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  margin-top: 30px;
+  margin-top: 45px;
   width: 238px;
   height: 14px;
   border: none;
   outline: none;
-  padding-bottom: 13px;
+  padding-bottom: 5px;
 }
 
 .popup__line {
   width: 238px;
   height: 1px;
-  opacity: 0.2;
-  background: #000;
+  color: #f00;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 
 .popup__save-button {
@@ -161,6 +172,13 @@
 
 .popup__save-button:hover {
   opacity: 0.8;
+}
+
+.popup__save-button:disabled {
+  color: #ccc;
+  background: #fff;
+  cursor: default;
+  opacity: 0.5;
 }
 
 @media screen and (min-width: 720px) {

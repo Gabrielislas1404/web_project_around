@@ -24,6 +24,8 @@ const buttonHeart = document.querySelector(".elements__heart");
 const popupImage = document.querySelector(".popup_image");
 //variable para cerrar popup de imágen
 const closeImage = popupImage.querySelector(".popup__close-button");
+//variable de overlay para poder cerrar popups con click fuera de formulario
+const overlays = document.querySelectorAll(".popup__overlay");
 
 // array cards
 const initialCards = [
@@ -152,3 +154,24 @@ function createCard(name, link) {
 
   return cardElement;
 }
+
+//función de flecha para cerrar popups con click apartir de variable overlays
+overlays.forEach((overlay) => {
+  overlay.addEventListener("click", function (event) {
+    const popup = overlay.closest(".popup");
+    togglePopup(popup);
+  });
+});
+
+//función para cerrar popups con tecla Esc
+function closePopups(event) {
+  if (event.key === "Escape") {
+    const popups = document.querySelectorAll(".popup");
+    popups.forEach((popup) => {
+      if (popup.classList.contains("popup_hide")) {
+        togglePopup(popup);
+      }
+    });
+  }
+}
+document.addEventListener("keydown", closePopups);
