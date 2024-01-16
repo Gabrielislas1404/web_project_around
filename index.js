@@ -66,6 +66,8 @@ function toggleLike(buttonHeart) {
 }
 //evento para abrir popup de profile
 buttonEdit.addEventListener("click", function () {
+  inputName.value = profileName.textContent;
+  inputOccupation.value = profileOccupation.textContent;
   togglePopup(popupProfile);
 });
 
@@ -84,7 +86,7 @@ formProfile.addEventListener("submit", function (event) {
   event.preventDefault();
   profileName.textContent = inputName.value;
   profileOccupation.textContent = inputOccupation.value;
-  formProfile.reset();
+  //formProfile.reset();
   togglePopup(popupProfile);
 });
 

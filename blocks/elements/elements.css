@@ -23,6 +23,7 @@
   width: 282px;
   height: 282px;
   cursor: pointer;
+  background-color: #000;
 }
 
 .elements__trash {
