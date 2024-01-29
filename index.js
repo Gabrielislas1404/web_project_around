@@ -1,3 +1,7 @@
+import Card from "./Card.js";
+import FormValidator from "./FormValidator.js";
+import { validationConfig, popupImage, togglePopup } from "./utils.js";
+
 //variables para abrir y cerrar popup
 const buttonEdit = document.querySelector(".profile__button");
 const popupProfile = document.querySelector(".popup");
@@ -20,8 +24,6 @@ const closeAddprofile = popupAdd.querySelector(".popup__close-button");
 //variable botón corazón
 const buttonHeart = document.querySelector(".elements__heart");
 
-//variable para imágen de elements
-const popupImage = document.querySelector(".popup_image");
 //variable para cerrar popup de imágen
 const closeImage = popupImage.querySelector(".popup__close-button");
 //variable de overlay para poder cerrar popups con click fuera de formulario
@@ -55,15 +57,15 @@ const initialCards = [
   },
 ];
 
-//función para abrir y cerrar popup
-function togglePopup(popup) {
-  popup.classList.toggle("popup_hide");
-}
+//container de cards <section class ="elements" </section>
+const elements = document.querySelector(".elements");
 
-//función para cambiar color de corazón (hacer like)
-function toggleLike(buttonHeart) {
-  buttonHeart.classList.toggle("elements__black-heart");
-}
+//Iterar función de flecha
+initialCards.forEach((item) => {
+  const newCard = new Card(item.name, item.link, "#card-template");
+  elements.append(newCard.generateCard());
+});
+
 //evento para abrir popup de profile
 buttonEdit.addEventListener("click", function () {
   inputName.value = profileName.textContent;
@@ -93,8 +95,8 @@ formProfile.addEventListener("submit", function (event) {
 //evento para agregar imágen y su título
 pictureForm.addEventListener("submit", function (event) {
   event.preventDefault();
-  const newCard = createCard(inputTitle.value, inputLink.value);
-  elements.prepend(newCard);
+  const newCard = new Card(inputTitle.value, inputLink.value, "#card-template");
+  elements.prepend(newCard.generateCard());
   pictureForm.reset();
   togglePopup(popupAdd);
 });
@@ -109,54 +111,6 @@ closeAddprofile.addEventListener("click", function () {
   togglePopup(popupAdd);
 });
 
-//container de cards <section class ="elements" </section>
-const elements = document.querySelector(".elements");
-
-//Iterar función de flecha
-initialCards.forEach((item) => {
-  const newCard = createCard(item.name, item.link);
-  elements.append(newCard);
-});
-
-//valores para card-template
-function createCard(name, link) {
-  const cardTemplate = document.querySelector("#card-template").content;
-  const cardElement = cardTemplate
-    .querySelector(".elements__container")
-    .cloneNode(true);
-  //<img class="elements__image" src="" alt="" />
-  const cardImage = cardElement.querySelector(".elements__image");
-  cardImage.src = link;
-  cardImage.setAttribute("alt", name);
-
-  // <h3 class="elements__text"></h3>
-  const cardText = (cardElement.querySelector(".elements__text").textContent =
-    name);
-  // <button class="elements__heart"></button>
-  const buttonLike = cardElement.querySelector(".elements__heart");
-  // <button class="elements__trash"></button>
-  const buttonDelete = cardElement.querySelector(".elements__trash");
-  buttonDelete.addEventListener("click", function () {
-    cardElement.remove();
-  });
-
-  // variable y evento para hacer click y abrir popup de imágen
-  const openImage = cardElement.querySelector(".elements__image");
-  openImage.addEventListener("click", function () {
-    popupImage.classList.toggle("popup_hide");
-    popupImage.querySelector("img").src = link;
-    popupImage.querySelector(".popup__card-name").textContent = name;
-  });
-
-  //variable para que corazón reaccione
-  const heartButton = cardElement.querySelector(".elements__heart");
-  heartButton.addEventListener("click", function () {
-    toggleLike(heartButton);
-  });
-
-  return cardElement;
-}
-
 //función de flecha para cerrar popups con click apartir de variable overlays
 overlays.forEach((overlay) => {
   overlay.addEventListener("click", function (event) {
@@ -165,15 +119,8 @@ overlays.forEach((overlay) => {
   });
 });
 
-//función para cerrar popups con tecla Esc
-function closePopups(event) {
-  if (event.key === "Escape") {
-    const popups = document.querySelectorAll(".popup");
-    popups.forEach((popup) => {
-      if (popup.classList.contains("popup_hide")) {
-        togglePopup(popup);
-      }
-    });
-  }
-}
-document.addEventListener("keydown", closePopups);
+const FormValidatorProfile = new FormValidator(validationConfig, formProfile);
+FormValidatorProfile.enableValidation();
+
+const formValidatorCard = new FormValidator(validationConfig, pictureForm);
+formValidatorCard.enableValidation();

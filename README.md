@@ -1,6 +1,6 @@
 # Tripleten web_project_around
 
-# Proyecto 4, 5 y 6 en Desarrollo Web.
+# Proyecto 4, 5, 6 y 7 en Desarrollo Web.
 
 ### Esta es la versión más reciente del proyecto web_project_around.
 
@@ -23,6 +23,7 @@ Las funcionalidades con JS son:
 5.Borrar las imágenes haciendo click en el bote de basura.
 6.Los formularios se cierran haciendo "click" fuera de ellos en cualquier parte de la pantalla o con la tecla "Escape" utilizando el evento "Keydown".
 7.Los formularios validan la información ingresada. En caso de no pasar la validación, los botónes de guardar y crear no se activarán y lanzarán un mensaje de error.
+8.El proyecto se ha adaptado a varios archivos Javascript para hacerlo modular y aprovechar las herramientas de import y export, así como utilizar clases y métodos.
 
 ##### El proyecto ha sido realizado en VSS (Visual Studio Code) y visualizado con mi navegador Google Chrome Versión 116.0.5845.187 (Build oficial) (x86_64)
 
