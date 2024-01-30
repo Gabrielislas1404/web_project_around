@@ -58,6 +58,8 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  margin-left: 25px;
+  margin-right: 5px;
 }
 
 .elements__heart {
