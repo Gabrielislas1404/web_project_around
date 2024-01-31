@@ -97,7 +97,7 @@ pictureForm.addEventListener("submit", function (event) {
   event.preventDefault();
   const newCard = new Card(inputTitle.value, inputLink.value, "#card-template");
   elements.prepend(newCard.generateCard());
-  //pictureForm.reset();
+  pictureForm.reset();
   togglePopup(popupAdd);
 });
 
