@@ -104,6 +104,7 @@ pictureForm.addEventListener("submit", function (event) {
 //evento para abrir popup addprofile
 addButton.addEventListener("click", function () {
   togglePopup(popupAdd);
+  formValidatorCard.enableValidation();
 });
 
 //evento para cerrar popup addprofile
