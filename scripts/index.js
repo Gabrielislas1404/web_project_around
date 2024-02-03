@@ -71,7 +71,7 @@ buttonEdit.addEventListener("click", function () {
   inputName.value = profileName.textContent;
   inputOccupation.value = profileOccupation.textContent;
   togglePopup(popupProfile);
-  formValidatorCard.enableValidation();
+  FormValidatorProfile.enableValidation();
 });
 
 //evento para cerrar popup de profile
