@@ -27,7 +27,7 @@
 }
 
 .elements__trash {
-  background: url(../../images/Trashelement.svg) no-repeat center;
+  background: url(../images/Trashelement.svg) no-repeat center;
   background-size: contain;
   border: none;
   width: 18px;
@@ -63,7 +63,7 @@
 }
 
 .elements__heart {
-  background: url(../../images/elementsheart.svg) no-repeat center;
+  background: url(../images/elementsheart.svg) no-repeat center;
   background-size: contain;
   margin-right: 15px;
   width: 21px;
@@ -76,7 +76,7 @@
 }
 
 .elements__black-heart {
-  background: url(../../images/elementsblackheart.svg) no-repeat center;
+  background: url(../images/elementsblackheart.svg) no-repeat center;
   background-size: contain;
   width: 20.759px;
   margin-right: 15px;
