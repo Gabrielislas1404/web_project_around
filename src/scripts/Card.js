@@ -1,16 +1,11 @@
-import {
-  removeCard,
-  popupImage,
-  openPopup,
-  toggleLike,
-  togglePopup,
-} from "./utils.js";
+import { removeCard, toggleLike } from "./utils.js";
 
 export default class Card {
-  constructor(name, link, templateSelector) {
+  constructor(name, link, templateSelector, handleCardClick) {
     this.name = name;
     this.link = link;
     this.templateSelector = templateSelector;
+    this.handleCardClick = handleCardClick;
   }
 
   _getTemplate() {
@@ -24,7 +19,7 @@ export default class Card {
     //<img class="elements__image" src="" alt="" />
     const cardImage = cardElement.querySelector(".elements__image");
     cardImage.src = this.link;
-    cardImage.setAttribute("alt", name);
+    cardImage.alt = this.name;
 
     return cardElement;
   }
@@ -40,10 +35,13 @@ export default class Card {
       removeCard(this._cardElement);
     });
 
-    openImage.addEventListener("click", () => {
-      openPopup(popupImage, this.link, this.name);
-      togglePopup(popupImage);
-    });
+    // Se  sustituye por handleCardClick????
+    //openImage.addEventListener("click", () => {
+    // openPopup(popupImage, this.link, this.name);
+    //togglePopup(popupImage);
+    //});
+
+    openImage.addEventListener("click", this.handleCardClick);
 
     buttonLike.addEventListener("click", () => {
       toggleLike(buttonLike);
