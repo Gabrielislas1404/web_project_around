@@ -9,22 +9,13 @@ import "./pages/index.css";
 
 import {
   buttonEdit,
-  closeButton,
   profileName,
   profileOccupation,
   formProfile,
   inputName,
   inputOccupation,
-  inputTitle,
-  inputLink,
   pictureForm,
   addButton,
-  closeAddprofile,
-  buttonHeart,
-  closeImage,
-  overlays,
-  profileForm,
-  //occupation,
   initialCards,
   elements,
   popupAddSelector,
@@ -32,66 +23,18 @@ import {
   popupImageSelector,
 } from "./scripts/Const.js";
 
-//Iterar función de flecha
-//initialCards.forEach((item) => {
-//const newCard = new Card(item.name, item.link, "#card-template");
-//elements.append(newCard.generateCard());
-//});
-
-//evento para abrir popup de profile
-/*buttonEdit.addEventListener("click", function () {
-inputName.value = profileName.textContent;
-inputOccupation.value = profileOccupation.textContent;
-togglePopup(popupProfile);
-FormValidatorProfile.enableValidation();
+buttonEdit.addEventListener("click", function () {
+  const userData = userInfo.getUserInfo();
+  inputName.value = userData.userName;
+  inputOccupation.value = userData.userOccupation;
+  popupProfile.open();
+  FormValidatorProfile.enableValidation();
 });
 
-//evento para cerrar popup de profile
-closeButton.addEventListener("click", function () {
-togglePopup(popupProfile);
+addButton.addEventListener("click", () => {
+  popupAddButton.open();
+  formValidatorCard.enableValidation();
 });
-
-//evento para cerrar popup de imágen
-closeImage.addEventListener("click", function () {
-togglePopup(popupImage);
-});
-
-//evento para cambiar nombre y ocupación
-formProfile.addEventListener("submit", function (event) {
-event.preventDefault();
-profileName.textContent = inputName.value;
-profileOccupation.textContent = inputOccupation.value;
-//formProfile.reset();
-togglePopup(popupProfile);
-});
-
-//evento para agregar imágen y su título
-pictureForm.addEventListener("submit", function (event) {
-event.preventDefault();
-const newCard = new Card(inputTitle.value, inputLink.value, "#card-template");
-elements.prepend(newCard.generateCard());
-pictureForm.reset();
-togglePopup(popupAdd);
-});
-
-//evento para abrir popup addprofile
-addButton.addEventListener("click", function () {
-togglePopup(popupAdd);
-formValidatorCard.enableValidation();
-});
-
-//evento para cerrar popup addprofile
-closeAddprofile.addEventListener("click", function () {
-togglePopup(popupAdd);
-});
-
-//función de flecha para cerrar popups con click apartir de variable overlays
-overlays.forEach((overlay) => {
-overlay.addEventListener("click", function (event) {
-const popup = overlay.closest(".popup");
-togglePopup(popup);
-});
-}); */
 
 const popupImage = new PopupWithImage(popupImageSelector);
 const popupProfile = new PopupWithForm(popupProfileSelector, (inputValues) => {
@@ -114,15 +57,9 @@ const popupAddButton = new PopupWithForm(popupAddSelector, (inputValues) => {
   elements.prepend(newCard.generateCard());
 });
 
-buttonEdit.addEventListener("click", function () {
-  const userData = userInfo.getUserInfo();
-  inputName.value = userData.userName;
-  inputOccupation.value = userData.userOccupation;
-  popupProfile.open();
-});
-
-addButton.addEventListener("click", () => {
-  popupAddButton.open();
+const userInfo = new UserInfo({
+  userNameSelector: ".profile__name",
+  occupationSelector: ".profile__about-me",
 });
 
 const cardsSection = new Section(
@@ -141,8 +78,6 @@ const cardsSection = new Section(
 );
 
 cardsSection.renderer();
-
-const userInfo = new UserInfo("profile**name", ".profile**about-me");
 
 const FormValidatorProfile = new FormValidator(validationConfig, formProfile);
 FormValidatorProfile.enableValidation();

@@ -4,21 +4,18 @@ export default class FormValidator {
     this.formElement = formElement;
   }
 
-  // oculta mensaje de error de input y form (se utiliza en funcion para validar entradas)
   _hideInputError(form, errorSelector) {
     const errorElement = form.querySelector(errorSelector);
     errorElement.textContent = "";
     errorElement.classList.remove(this.validationConfig.errorClass);
   }
 
-  //muestra mensaje de error de input y form (se utiliza en funcion para validar entradas)
   _showInputError(form, errorSelector, config, errorMessage) {
     const errorElement = form.querySelector(errorSelector);
     errorElement.textContent = errorMessage;
     errorElement.classList.add(config.errorClass);
   }
 
-  //validar inputs de form
   _checkInputValidity(input, config) {
     if (input.validity.valid) {
       this._hideInputError(input.form, `#input__error-${input.name}`, config);
@@ -33,7 +30,6 @@ export default class FormValidator {
     this._toggleButton(input.form, config);
   }
 
-  //mostrar botón de guardar y crear si la info es correcta
   _toggleButton(form, config) {
     const inputs = Array.from(form.querySelectorAll(config.inputSelector));
     const submitButton = form.querySelector(config.submitButtonSelector);
@@ -46,13 +42,12 @@ export default class FormValidator {
     }
   }
 
-  //validacion del form
   enableValidation(config) {
     const forms = Array.from(document.forms);
 
     forms.forEach((form) => {
-      form.addEventListener("submit", (e) => {
-        e.preventDefault();
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
       });
 
       const inputs = Array.from(

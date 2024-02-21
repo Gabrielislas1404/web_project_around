@@ -1,11 +1,11 @@
 import { removeCard, toggleLike } from "./utils.js";
 
 export default class Card {
-  constructor(name, link, templateSelector, handleCardClick) {
+  constructor(name, link, templateSelector, { handleCardClick }) {
     this.name = name;
     this.link = link;
     this.templateSelector = templateSelector;
-    this.handleCardClick = handleCardClick;
+    this._handleCardClick = handleCardClick;
   }
 
   _getTemplate() {
@@ -41,7 +41,7 @@ export default class Card {
     //togglePopup(popupImage);
     //});
 
-    openImage.addEventListener("click", this.handleCardClick);
+    openImage.addEventListener("click", this._handleCardClick);
 
     buttonLike.addEventListener("click", () => {
       toggleLike(buttonLike);
