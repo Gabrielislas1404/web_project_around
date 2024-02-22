@@ -45,12 +45,12 @@ const popupProfile = new PopupWithForm(popupProfileSelector, (inputValues) => {
 
 const popupAddButton = new PopupWithForm(popupAddSelector, (inputValues) => {
   const newCard = new Card(
-    inputValues.name,
+    inputValues.title,
     inputValues.link,
     "#card-template",
     {
       handleCardClick: () => {
-        popupImage.open(inputValues.link, inputValues.name);
+        popupImage.open(inputValues.link, inputValues.title);
       },
     }
   );
