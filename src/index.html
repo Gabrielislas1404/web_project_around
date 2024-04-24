@@ -15,15 +15,16 @@
       <div class="header__line"></div>
     </header>
     <section class="profile">
-      <img
-        src="<%=require('./images/profilephoto.jpg')%>"
-        alt="foto de perfil"
-        class="profile__picture"
-      />
+      <div class="profile__picture-wrapper">
+        <div class="profile__picture-overlay"></div>
+        <img src="." alt="foto de perfil" class="profile__picture" />
+        <button class="profile__picture-button"></button>
+      </div>
+
       <div class="profile__container">
-        <h1 class="profile__name">Jacques Cousteau</h1>
+        <h1 class="profile__name"></h1>
         <button type="button" class="profile__button"></button>
-        <h2 class="profile__about-me">Explorador</h2>
+        <h2 class="profile__about-me"></h2>
       </div>
       <button type="button" class="profile__add-button"></button>
     </section>
@@ -107,6 +108,41 @@
         <img src=" " alt="" class="popup__picture" />
         <h4 class="popup__card-name"></h4>
       </div>
+    </div>
+    <!-- Popup para cambiar foto de perfil -->
+    <div class="popup popup_profile-button">
+      <div class="popup__overlay"></div>
+      <form class="popup__content popup__content_profile" novalidate>
+        <button type="button" class="popup__close-button"></button>
+        <h4 class="popup__title popup__title_picture">
+          Cambiar foto de perfil
+        </h4>
+        <div class="popup__wrapper">
+          <input
+            type="url"
+            name="link"
+            id="link"
+            placeholder="Imágen de perfil"
+            minlength="7"
+            required
+            class="popup__input popup__input_link"
+          />
+          <span class="popup__line" id="input__error-link"></span>
+          <button disabled type="submit" class="popup__save-button">
+            Guardar
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Popup eliminar foto -->
+    <div class="popup popup_erase-photo">
+      <div class="popup__overlay"></div>
+      <form class="popup__content popup__content_profile">
+        <button type="button" class="popup__close-button"></button>
+        <h4 class="popup__title popup__title_picture">¿Estás seguro/a?</h4>
+        <button type="submit" class="popup__save-button">Si</button>
+      </form>
     </div>
 
     <template id="card-template">

@@ -1,6 +1,8 @@
+export const pictureButton = document.querySelector(".profile__picture-button");
 export const buttonEdit = document.querySelector(".profile__button");
 export const profileName = document.querySelector(".profile__name");
 export const profileOccupation = document.querySelector(".profile__about-me");
+export const profilePicture = document.querySelector(".profile__picture");
 export const profileForm = document.forms.edit;
 export const inputName = document.querySelector(".popup__input_name");
 export const inputOccupation = document.querySelector(
@@ -11,6 +13,7 @@ export const elements = document.querySelector(".elements");
 export const popupImageSelector = ".popup_image";
 export const popupAddSelector = ".popup_add-button";
 export const popupProfileSelector = ".popup";
+export const popupPictureSelector = ".popup_profile-button";
 export const pictureForm = document.querySelector(".popup__content_add");
 export const formProfile = document.querySelector(".popup__content");
 

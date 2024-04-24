@@ -8,9 +8,11 @@ import UserInfo from "./scripts/UserInfo.js";
 import "./pages/index.css";
 
 import {
+  pictureButton,
   buttonEdit,
   profileName,
   profileOccupation,
+  profilePicture,
   formProfile,
   inputName,
   inputOccupation,
@@ -20,8 +22,19 @@ import {
   elements,
   popupAddSelector,
   popupProfileSelector,
+  popupPictureSelector,
   popupImageSelector,
 } from "./scripts/Const.js";
+import { api } from "./utils/Api.js";
+
+function getUser() {
+  api.getUserInfo().then((userData) => {
+    profileName.textContent = userData.name;
+    profileOccupation.textContent = userData.about;
+    profilePicture.src = userData.avatar;
+    profilePicture.alt = userData.name;
+  });
+}
 
 buttonEdit.addEventListener("click", function () {
   const userData = userInfo.getUserInfo();
@@ -36,12 +49,25 @@ addButton.addEventListener("click", () => {
   formValidatorCard.enableValidation();
 });
 
+pictureButton.addEventListener("click", () => {
+  popupPictureProfile.open();
+  formValidatorCard.enableValidation();
+});
+
 const popupImage = new PopupWithImage(popupImageSelector);
 const popupProfile = new PopupWithForm(popupProfileSelector, (inputValues) => {
   profileName.textContent = inputValues.name;
   profileOccupation.textContent = inputOccupation.value;
   popupProfile.close();
 });
+
+const popupPictureProfile = new PopupWithForm(
+  popupPictureSelector,
+  (inputValues) => {
+    profilePicture.src = inputValues.link;
+    popupPictureProfile.close();
+  }
+);
 
 const popupAddButton = new PopupWithForm(popupAddSelector, (inputValues) => {
   const newCard = new Card(
