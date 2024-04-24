@@ -52,6 +52,15 @@
   position: relative;
 }
 
+.popup__content_profile {
+  height: 272px;
+}
+
+.popup__picturebox {
+  padding-bottom: -15px;
+  text-align: center;
+}
+
 .popup__image-container {
   width: 240px;
   height: 299px;
@@ -93,6 +102,10 @@
   font-weight: 900;
   line-height: normal;
   padding-bottom: 5px;
+}
+
+.popup__title_picture {
+  margin-bottom: 30px;
 }
 
 .popup__input {
@@ -196,6 +209,18 @@
     width: 433px;
     height: 540px;
   }
+
+  .popup__content_profile {
+    height: 272px;
+  }
+
+  .popup__wrapper {
+    padding-bottom: -15px;
+    text-align: center;
+  }
+  .popup__title_picture {
+    margin-bottom: 30px;
+  }
 }
 
 @media screen and (min-width: 1280px) {
@@ -244,5 +269,16 @@
     width: 358px;
     height: 50px;
     font-size: 18px;
+  }
+  .popup__content_profile {
+    height: 272px;
+  }
+  .popup__picturebox {
+    padding-bottom: -15px;
+    text-align: center;
+  }
+
+  .popup__title_picture {
+    margin-bottom: 10px;
   }
 }
