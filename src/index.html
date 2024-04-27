@@ -121,7 +121,7 @@
           <input
             type="url"
             name="link"
-            id="link"
+            id="popup__avatar-input"
             placeholder="Imágen de perfil"
             minlength="7"
             required
@@ -150,8 +150,11 @@
         <img class="elements__image" src=" " alt=" " />
         <div class="elements__description">
           <h3 class="elements__text"></h3>
-          <button class="elements__heart"></button>
           <button class="elements__trash"></button>
+          <div class="elements__like-wrapper">
+            <button class="elements__heart"></button>
+            <span class="elements__like">0</span>
+          </div>
         </div>
       </div>
     </template>

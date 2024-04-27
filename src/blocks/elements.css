@@ -67,6 +67,7 @@
   background-size: contain;
   margin-right: 15px;
   width: 21px;
+  height: 19px;
   cursor: pointer;
   border: #000;
 }
@@ -81,4 +82,20 @@
   width: 20.759px;
   margin-right: 15px;
   border: #000;
+}
+
+.elements__like-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 21px;
+  height: 35px;
+  margin-top: 22px;
+  margin-right: 23px;
+}
+
+.elements__like {
+  padding-left: 6px;
+  color: #000;
+  display: flex;
+  align-items: center;
 }

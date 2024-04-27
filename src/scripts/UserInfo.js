@@ -11,8 +11,14 @@ export default class userInfo {
     };
   }
 
-  setUserInfo({ userName, userOccupation }) {
+  setUserInfo({ name, about }) {
+    this._userName.textContent = name;
+    this._userOccupation.textContent = about;
+  }
+}
+
+/* setUserInfo({ userName, userOccupation }) {
     this._userName.textContent = userName;
     this._userOccupation.textContent = userOccupation;
   }
-}
+} */

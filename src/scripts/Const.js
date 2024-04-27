@@ -16,6 +16,10 @@ export const popupProfileSelector = ".popup";
 export const popupPictureSelector = ".popup_profile-button";
 export const pictureForm = document.querySelector(".popup__content_add");
 export const formProfile = document.querySelector(".popup__content");
+export const saveButton = document.querySelector(".popup__save-button");
+export const popupAvatarForm = document.querySelector(".popup_profile-button");
+export const avatarForm = document.querySelector(".popup__content_profile");
+export const avatarInput = document.querySelector("#popup__avatar-input");
 
 import Brooklyn from "../images/brooklyn.jpg";
 import TimesSquare from "../images/timessquare.jpg";
