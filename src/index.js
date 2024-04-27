@@ -138,22 +138,19 @@ buttonEdit.addEventListener("click", () => {
   profileForm._getInputValues();
 });
 
-const profileForm = new PopupWithForm(".popup", () => {
+const profileForm = new PopupWithForm(".popup", (inputValues) => {
   saveButton.textContent = "Guardando...";
-  const inputValues = profileForm._getInputValues;
 
-  console.log(inputName, inputName.value);
-  api
-    .updateUser(inputName.value, inputOccupation.value)
-    .then((newUser) => {
+  api.updateUser(inputValues.name, inputValues.occupation);
+  /*   .then((newUser) => {
       newUserInfo.setUserInfo({
-        name: inputName.value,
-        about: inputOccupation.value,
+        name: inputValues.name,
+        about: inputValues.occupation,
       });
     })
     .catch((error) => {
       console.error("Ha surgido un error", error);
-    });
+    }); */
 });
 
 popupAvatarForm.addEventListener("submit", (event) => {
