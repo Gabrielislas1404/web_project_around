@@ -11,6 +11,7 @@ import {
   avatarInput,
   popupAvatarForm,
   saveButton,
+  saveButtonPicture,
   pictureButton,
   buttonEdit,
   profileName,
@@ -19,6 +20,8 @@ import {
   formProfile,
   inputName,
   inputOccupation,
+  inputTitle,
+  inputUrl,
   pictureForm,
   addButton,
   initialCards,
@@ -27,6 +30,7 @@ import {
   popupProfileSelector,
   popupPictureSelector,
   popupImageSelector,
+  popupConfirm,
 } from "./scripts/Const.js";
 import { api } from "./utils/Api.js";
 
@@ -82,54 +86,50 @@ const userInfo = new UserInfo({
   occupationSelector: ".profile__about-me",
 });
 
-const cardsSection = new Section(
-  {
-    items: initialCards,
-    renderer: (item) => {
-      const newCard = new Card(item.name, item.link, "#card-template", {
-        handleCardClick: () => {
-          popupImage.open(item.link, item.name);
-        },
-      });
-      cardsSection.addItem(newCard.generateCard());
-    },
-  },
-  ".elements"
-);
-
-cardsSection.renderer();
-
 //METODOS DEL SERVER
 
-function getUser() {
-  api
-    .getUserInfo()
-    .then((userData) => {
-      profileName.textContent = userData.name;
-      profileOccupation.textContent = userData.about;
-      profilePicture.src = userData.avatar;
-      profilePicture.alt = userData.name;
-      /* const userId = userData._id;
-      createCard(userId);
-      return userId; */
-      return userData;
-    })
-    .catch((error) => {
-      console.warn(`error:${error.message}`);
-    });
-}
-getUser();
-
-function createCard(userId) {
-  const cardSection = new Section({
-    items: initialCards,
-    renderer: (data) => {
-      const newCard = new Card(data, ".card", function () {
-        popupImage.open(data.name, data.link);
-      });
-    },
+api
+  .getUserInfo()
+  .then((userData) => {
+    profileName.textContent = userData.name;
+    profileOccupation.textContent = userData.about;
+    profilePicture.src = userData.avatar;
+    profilePicture.alt = userData.name;
+    userInfo.setUserId(userData._id);
+  })
+  .catch((error) => {
+    console.warn(`error:${error.message}`);
   });
-}
+
+api.getInitialCards().then((cards) => {
+  const userId = userInfo.getUserId();
+
+  const cardsSection = new Section(
+    {
+      items: cards,
+      renderer: (item) => {
+        /* console.log(item); */
+        const newCard = new Card(
+          item.name,
+          item.link,
+          "#card-template",
+          item.likes,
+          item._id,
+          userId,
+          {
+            handleCardClick: () => {
+              popupImage.open(item.link, item.name);
+            },
+          }
+        );
+        cardsSection.addItem(newCard.generateCard());
+      },
+    },
+    ".elements"
+  );
+
+  cardsSection.renderer();
+});
 
 const newUserInfo = new UserInfo(profileName, profileOccupation);
 buttonEdit.addEventListener("click", () => {
@@ -152,6 +152,39 @@ const profileForm = new PopupWithForm(".popup", (inputValues) => {
       console.error("Ha surgido un error", error);
     }); */
 });
+
+function containerCard(cardSection) {
+  const pictureForm = new PopupWithForm(".popup_add-button", () => {
+    const nameCard = inputTitle.value;
+    const linkCard = inputUrl.value;
+    saveButton.textContent = "Guardando...";
+    api.addCard(nameCard, linkCard).then((newCard) => {
+      let userId = newCard.owner._id;
+      const createOneCard = new Card(
+        newCard,
+        "#card-template",
+        function () {
+          popupImage.open(nameCard, linkCard);
+        },
+        remoteLike,
+        remoteRemoveLike,
+        userId,
+        popupConfirm
+      );
+      const cardElement = createOneCard.generateCard();
+      cardSection.addItem(cardElement, true);
+      saveButtonPicture.textContent = "Crear";
+      inputTitle.value = "";
+      inputUrl.value = "";
+    });
+  });
+  addButton.addEventListener("click", () => {
+    pictureForm.open();
+  });
+  saveButtonPicture.addEventListener("click", () => {
+    pictureForm.close();
+  });
+}
 
 popupAvatarForm.addEventListener("submit", (event) => {
   event.preventDefault();

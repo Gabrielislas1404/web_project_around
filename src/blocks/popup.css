@@ -56,7 +56,12 @@
   height: 272px;
 }
 
-.popup__picturebox {
+/* .popup__picturebox {
+  padding-bottom: -15px;
+  text-align: center;
+} */
+
+.popup__wrapper {
   padding-bottom: -15px;
   text-align: center;
 }
