@@ -129,7 +129,6 @@ api.getInitialCards().then((cards) => {
                     // update the number of likes
                     likesNumberElement.textContent = res.likes.length;
                   })
-
                   .catch((error) => console.warn(error));
               } else {
                 // if the card is not liked by the current user, then add the like
