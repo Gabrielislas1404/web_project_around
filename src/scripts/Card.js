@@ -24,12 +24,12 @@ export default class Card {
   _getTemplate() {
     const likesNumber = this.likes.length;
     const cardTemplate = document.querySelector(this.templateSelector).content;
-    console.log("cardLikes", likesNumber);
-    const heartLikes = cardTemplate.querySelector(".elements__like");
     const cardElement = cardTemplate
       .querySelector(".elements__container")
       .cloneNode(true);
     cardElement.querySelector(".elements__text").textContent = this.name;
+
+    const heartLikes = cardElement.querySelector(".elements__like");
     heartLikes.textContent = likesNumber <= 0 ? "0" : likesNumber;
 
     const cardImage = cardElement.querySelector(".elements__image");

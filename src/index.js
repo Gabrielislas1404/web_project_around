@@ -108,11 +108,10 @@ api.getInitialCards().then((cards) => {
     {
       items: cards,
       renderer: (item) => {
+        console.log(item);
         const isLiked = item.likes.find((like) => {
           return like._id === userId;
         });
-
-        console.log(item);
         const newCard = new Card(
           item.name,
           item.link,
