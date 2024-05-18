@@ -6,6 +6,12 @@ export function toggleLike(buttonHeart) {
   buttonHeart.classList.toggle("elements__black-heart");
 }
 
+export function checkIsLiked(likes, userId) {
+  return likes.find((like) => {
+    return like._id === userId;
+  });
+}
+
 export const validationConfig = {
   formSelector: ".popup__content",
   inputSelector: ".popup__input",

@@ -6,17 +6,14 @@ export default class Card {
     link,
     templateSelector,
     likes,
-    cardId,
-    userId,
-
+    isLiked,
     { handleCardClick, handleLike }
   ) {
     this.likes = likes;
-    this._cardId = cardId;
+    this.isLiked = isLiked;
     this.name = name;
     this.link = link;
     this.templateSelector = templateSelector;
-    this.userId = userId;
     this._handleCardClick = handleCardClick;
     this._handleLike = handleLike;
   }
@@ -28,7 +25,8 @@ export default class Card {
       .querySelector(".elements__container")
       .cloneNode(true);
     cardElement.querySelector(".elements__text").textContent = this.name;
-
+    const heartIcon = cardElement.querySelector(".elements__heart");
+    this.isLiked && heartIcon.classList.add("elements__black-heart");
     const heartLikes = cardElement.querySelector(".elements__like");
     heartLikes.textContent = likesNumber <= 0 ? "0" : likesNumber;
 
@@ -59,12 +57,18 @@ export default class Card {
       .catch((error) => console.warn(error));
   } */
 
+  _setIsLike() {}
+
+  _getIsLike() {}
+
   _setEventListeners() {
     const openImage = this._cardElement.querySelector(".elements__image");
 
     const buttonLike = this._cardElement.querySelector(".elements__heart");
 
     const buttonDelete = this._cardElement.querySelector(".elements__trash");
+
+    const likeNumber = this._cardElement.querySelector(".elements__like");
 
     buttonDelete.addEventListener("click", () => {
       removeCard(this._cardElement);
@@ -75,7 +79,7 @@ export default class Card {
     buttonLike.addEventListener("click", () => {
       toggleLike(buttonLike);
 
-      this._handleLike();
+      this._handleLike(likeNumber);
     });
   }
 

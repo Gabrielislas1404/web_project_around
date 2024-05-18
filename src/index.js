@@ -1,6 +1,6 @@
 import Card from "./scripts/Card.js";
 import FormValidator from "./scripts/FormValidator.js";
-import { validationConfig } from "./scripts/utils.js";
+import { validationConfig, checkIsLiked } from "./scripts/utils.js";
 import Section from "./scripts/Section.js";
 import PopupWithImage from "./scripts/PopupWithImage.js";
 import PopupWithForm from "./scripts/PopupWithForm.js";
@@ -108,26 +108,27 @@ api.getInitialCards().then((cards) => {
     {
       items: cards,
       renderer: (item) => {
-        console.log(item);
-        const isLiked = item.likes.find((like) => {
+        /* const isLiked = item.likes.find((like) => {
           return like._id === userId;
-        });
+        }); */
+        const isLiked = checkIsLiked(item.likes, userId);
         const newCard = new Card(
           item.name,
           item.link,
           "#card-template",
           item.likes,
-          item._id,
-          userId,
+          isLiked,
           {
             handleCardClick: () => {
               popupImage.open(item.link, item.name);
             },
-            handleLike: () => {
+            handleLike: (likesNumberElement) => {
+              const isLiked = checkIsLiked(item.likes, userId);
               api
                 .likeCard(item._id, isLiked)
                 .then((res) => {
                   console.log(res);
+                  likesNumberElement.textContent = res.likes.length;
                 })
 
                 .catch((error) => console.warn(error));
