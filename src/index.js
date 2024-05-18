@@ -214,8 +214,8 @@ popupAvatarForm.addEventListener("submit", (event) => {
   saveButton.textContent = "Guardando...";
   api
     .updateAvatar(avatarInput.value)
-    .then((avatarUrl) => {
-      profilePicture.src = avatarUrl.profilePicture;
+    .then((res) => {
+      profilePicture.src = res.avatar;
       profilePicture.alt = "Avatar";
       saveButton.textContent = "Guardar";
       avatarInput.value = "";
