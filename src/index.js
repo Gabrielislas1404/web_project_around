@@ -108,7 +108,11 @@ api.getInitialCards().then((cards) => {
     {
       items: cards,
       renderer: (item) => {
-        /* console.log(item); */
+        const isLiked = item.likes.find((like) => {
+          return like._id === userId;
+        });
+
+        console.log(item);
         const newCard = new Card(
           item.name,
           item.link,
@@ -119,6 +123,15 @@ api.getInitialCards().then((cards) => {
           {
             handleCardClick: () => {
               popupImage.open(item.link, item.name);
+            },
+            handleLike: () => {
+              api
+                .likeCard(item._id, isLiked)
+                .then((res) => {
+                  console.log(res);
+                })
+
+                .catch((error) => console.warn(error));
             },
           }
         );

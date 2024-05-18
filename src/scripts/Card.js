@@ -8,7 +8,8 @@ export default class Card {
     likes,
     cardId,
     userId,
-    { handleCardClick }
+
+    { handleCardClick, handleLike }
   ) {
     this.likes = likes;
     this._cardId = cardId;
@@ -17,17 +18,19 @@ export default class Card {
     this.templateSelector = templateSelector;
     this.userId = userId;
     this._handleCardClick = handleCardClick;
+    this._handleLike = handleLike;
   }
 
   _getTemplate() {
     const likesNumber = this.likes.length;
     const cardTemplate = document.querySelector(this.templateSelector).content;
+    console.log("cardLikes", likesNumber);
     const heartLikes = cardTemplate.querySelector(".elements__like");
     const cardElement = cardTemplate
       .querySelector(".elements__container")
       .cloneNode(true);
     cardElement.querySelector(".elements__text").textContent = this.name;
-    heartLikes.textContent = likesNumber <= 0 ? "" : likesNumber;
+    heartLikes.textContent = likesNumber <= 0 ? "0" : likesNumber;
 
     const cardImage = cardElement.querySelector(".elements__image");
     cardImage.src = this.link;
@@ -36,7 +39,7 @@ export default class Card {
     return cardElement;
   }
 
-  _remoteRemoveLike(idCard, buttonLike, callback) {
+  /*  _remoteRemoveLike(idCard, buttonLike, callback) {
     return api
       .deleteLikeCard(idCard)
       .then((res) => {
@@ -54,14 +57,9 @@ export default class Card {
         callback(res);
       })
       .catch((error) => console.warn(error));
-  }
+  } */
 
   _setEventListeners() {
-    const isLiked = this.likes.find((item) => {
-      return item._id === this.userId;
-    });
-    console.log(isLiked);
-
     const openImage = this._cardElement.querySelector(".elements__image");
 
     const buttonLike = this._cardElement.querySelector(".elements__heart");
@@ -77,7 +75,7 @@ export default class Card {
     buttonLike.addEventListener("click", () => {
       toggleLike(buttonLike);
 
-      this._remoteLike(this._cardId, isLiked);
+      this._handleLike();
     });
   }
 
