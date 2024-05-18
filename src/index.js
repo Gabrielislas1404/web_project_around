@@ -68,17 +68,12 @@ const popupPictureProfile = new PopupWithForm(
 );
 
 const popupAddButton = new PopupWithForm(popupAddSelector, (inputValues) => {
-  const newCard = new Card(
-    inputValues.title,
-    inputValues.link,
-    "#card-template",
-    {
-      handleCardClick: () => {
-        popupImage.open(inputValues.link, inputValues.title);
-      },
-    }
-  );
-  elements.prepend(newCard.generateCard());
+  const card = new Card(inputValues.title, inputValues.link, "#card-template", {
+    handleCardClick: () => {
+      popupImage.open(inputValues.link, inputValues.title);
+    },
+  });
+  elements.prepend(card.generateCard());
 });
 
 const userInfo = new UserInfo({
@@ -108,34 +103,50 @@ api.getInitialCards().then((cards) => {
     {
       items: cards,
       renderer: (item) => {
-        /* const isLiked = item.likes.find((like) => {
-          return like._id === userId;
-        }); */
-        const isLiked = checkIsLiked(item.likes, userId);
-        const newCard = new Card(
+        // check if the card is liked by the current user from the server data
+        const isLikedByCurrentUser = checkIsLiked(item.likes, userId);
+        const card = new Card(
           item.name,
           item.link,
           "#card-template",
           item.likes,
-          isLiked,
+          isLikedByCurrentUser,
           {
             handleCardClick: () => {
               popupImage.open(item.link, item.name);
             },
-            handleLike: (likesNumberElement) => {
-              const isLiked = checkIsLiked(item.likes, userId);
-              api
-                .likeCard(item._id, isLiked)
-                .then((res) => {
-                  console.log(res);
-                  likesNumberElement.textContent = res.likes.length;
-                })
+            //this function is called when the like button is clicked
+            handleLikeButtonClick: (likesNumberElement) => {
+              // check if the card is liked by the current user
+              const isLikedByCurrentUser = card.getIsLikedByCurrentUser();
+              if (isLikedByCurrentUser) {
+                // if the card is liked by the current user, then remove the like
+                api
+                  .unlikeCard(item._id)
+                  .then((res) => {
+                    // set the card as not liked by the current user
+                    card.setIsLikedByCurrentUser(false);
+                    // update the number of likes
+                    likesNumberElement.textContent = res.likes.length;
+                  })
 
-                .catch((error) => console.warn(error));
+                  .catch((error) => console.warn(error));
+              } else {
+                // if the card is not liked by the current user, then add the like
+                api
+                  .likeCard(item._id)
+                  .then((res) => {
+                    // set the card as liked by the current user
+                    card.setIsLikedByCurrentUser(true);
+                    // update the number of likes
+                    likesNumberElement.textContent = res.likes.length;
+                  })
+                  .catch((error) => console.warn(error));
+              }
             },
           }
         );
-        cardsSection.addItem(newCard.generateCard());
+        cardsSection.addItem(card.generateCard());
       },
     },
     ".elements"
@@ -171,10 +182,10 @@ function containerCard(cardSection) {
     const nameCard = inputTitle.value;
     const linkCard = inputUrl.value;
     saveButton.textContent = "Guardando...";
-    api.addCard(nameCard, linkCard).then((newCard) => {
-      let userId = newCard.owner._id;
+    api.addCard(nameCard, linkCard).then((card) => {
+      let userId = card.owner._id;
       const createOneCard = new Card(
-        newCard,
+        card,
         "#card-template",
         function () {
           popupImage.open(nameCard, linkCard);

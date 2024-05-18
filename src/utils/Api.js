@@ -87,11 +87,10 @@ class Api {
       .catch((error) => console.error("Error", error));
   }
 
-  likeCard(id, isLiked) {
-    const method = isLiked ? "DELETE" : "PUT";
+  likeCard(id) {
     return fetch(`${this.baseUrl}/cards/likes/${id}`, {
       headers: this.headers,
-      method: method,
+      method: "PUT",
       body: JSON.stringify({
         id,
       }),
@@ -102,7 +101,8 @@ class Api {
       })
       .catch((error) => console.error("Error", error));
   }
-  deleteLikeCard(id) {
+
+  unlikeCard(id) {
     return fetch(`${this.baseUrl}/cards/likes/${id}`, {
       headers: this.headers,
       method: "DELETE",

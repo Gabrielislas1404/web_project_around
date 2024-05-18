@@ -7,9 +7,10 @@ export function toggleLike(buttonHeart) {
 }
 
 export function checkIsLiked(likes, userId) {
-  return likes.find((like) => {
+  const isLiked = likes.find((like) => {
     return like._id === userId;
   });
+  return isLiked ? true : false;
 }
 
 export const validationConfig = {

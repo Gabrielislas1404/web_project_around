@@ -6,16 +6,16 @@ export default class Card {
     link,
     templateSelector,
     likes,
-    isLiked,
-    { handleCardClick, handleLike }
+    isLikedByCurrentUser,
+    { handleCardClick, handleLikeButtonClick }
   ) {
     this.likes = likes;
-    this.isLiked = isLiked;
+    this.isLikedByCurrentUser = isLikedByCurrentUser;
     this.name = name;
     this.link = link;
     this.templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
-    this._handleLike = handleLike;
+    this._handleLikeButtonClick = handleLikeButtonClick;
   }
 
   _getTemplate() {
@@ -26,7 +26,8 @@ export default class Card {
       .cloneNode(true);
     cardElement.querySelector(".elements__text").textContent = this.name;
     const heartIcon = cardElement.querySelector(".elements__heart");
-    this.isLiked && heartIcon.classList.add("elements__black-heart");
+    this.isLikedByCurrentUser &&
+      heartIcon.classList.add("elements__black-heart");
     const heartLikes = cardElement.querySelector(".elements__like");
     heartLikes.textContent = likesNumber <= 0 ? "0" : likesNumber;
 
@@ -37,29 +38,13 @@ export default class Card {
     return cardElement;
   }
 
-  /*  _remoteRemoveLike(idCard, buttonLike, callback) {
-    return api
-      .deleteLikeCard(idCard)
-      .then((res) => {
-        buttonLike.classList.remove("elements__black-heart");
-        callback(res);
-      })
-      .catch((error) => console.warn(error));
+  setIsLikedByCurrentUser(isLikedByCurrentUser) {
+    this.isLikedByCurrentUser = isLikedByCurrentUser;
   }
 
-  _remoteLike(idCard, isLiked, buttonLike, callback) {
-    api
-      .likeCard(idCard, isLiked)
-      .then((res) => {
-        buttonLike.classList.add("elements__black-heart");
-        callback(res);
-      })
-      .catch((error) => console.warn(error));
-  } */
-
-  _setIsLike() {}
-
-  _getIsLike() {}
+  getIsLikedByCurrentUser() {
+    return this.isLikedByCurrentUser;
+  }
 
   _setEventListeners() {
     const openImage = this._cardElement.querySelector(".elements__image");
@@ -78,8 +63,7 @@ export default class Card {
 
     buttonLike.addEventListener("click", () => {
       toggleLike(buttonLike);
-
-      this._handleLike(likeNumber);
+      this._handleLikeButtonClick(likeNumber);
     });
   }
 
