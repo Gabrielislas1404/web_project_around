@@ -11,6 +11,7 @@ import {
   avatarInput,
   popupAvatarForm,
   saveButton,
+  saveButtonAvatar,
   saveButtonPicture,
   pictureButton,
   buttonEdit,
@@ -211,13 +212,13 @@ function containerCard(cardSection) {
 
 popupAvatarForm.addEventListener("submit", (event) => {
   event.preventDefault();
-  saveButton.textContent = "Guardando...";
+  saveButtonAvatar.textContent = "Guardando...";
   api
     .updateAvatar(avatarInput.value)
     .then((res) => {
       profilePicture.src = res.avatar;
       profilePicture.alt = "Avatar";
-      saveButton.textContent = "Guardar";
+      saveButtonAvatar.textContent = "Guardar";
       avatarInput.value = "";
     })
     .catch((error) => {

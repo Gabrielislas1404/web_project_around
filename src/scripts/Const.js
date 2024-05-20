@@ -23,6 +23,9 @@ export const popupPictureSelector = ".popup_profile-button";
 export const pictureForm = document.querySelector(".popup__content_add");
 export const formProfile = document.querySelector(".popup__content");
 export const saveButton = document.querySelector(".popup__save-button");
+export const saveButtonAvatar = document.querySelector(
+  ".popup__save-button_avatar"
+);
 export const saveButtonPicture = document.querySelector(
   ".popup__save-button_picture"
 );
