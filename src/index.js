@@ -69,13 +69,40 @@ const popupPictureProfile = new PopupWithForm(
 );
 
 const popupAddButton = new PopupWithForm(popupAddSelector, (inputValues) => {
-  const card = new Card(inputValues.title, inputValues.link, "#card-template", {
-    handleCardClick: () => {
-      popupImage.open(inputValues.link, inputValues.title);
-    },
+  api.addCard().then(() => {
+    const card = new Card(
+      inputValues.title,
+      inputValues.link,
+      "#card-template",
+      [],
+      false,
+      {
+        handleCardClick: () => {
+          popupImage.open(inputValues.link, inputValues.title);
+        },
+      }
+    );
+    elements.prepend(card.generateCard());
   });
-  elements.prepend(card.generateCard());
+}).catch((error) => {
+  console.warn(`error:${error.message}`);
 });
+
+/* const popupAddButton = new PopupWithForm(popupAddSelector, (inputValues) => {
+  const card = new Card(
+    inputValues.title,
+    inputValues.link,
+    "#card-template",
+    [],
+    false,
+    {
+      handleCardClick: () => {
+        popupImage.open(inputValues.link, inputValues.title);
+      },
+    }
+  );
+  elements.prepend(card.generateCard());
+}); */
 
 const userInfo = new UserInfo({
   userNameSelector: ".profile__name",
