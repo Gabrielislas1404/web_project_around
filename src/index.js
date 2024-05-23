@@ -69,23 +69,20 @@ const popupPictureProfile = new PopupWithForm(
 );
 
 const popupAddButton = new PopupWithForm(popupAddSelector, (inputValues) => {
-  api.addCard().then(() => {
-    const card = new Card(
-      inputValues.title,
-      inputValues.link,
-      "#card-template",
-      [],
-      false,
-      {
+  api
+    .addCard(inputValues.title, inputValues.link)
+    .then((res) => {
+      console.log(res);
+      const card = new Card(res.title, res.link, "#card-template", [], false, {
         handleCardClick: () => {
-          popupImage.open(inputValues.link, inputValues.title);
+          popupImage.open(res.link, res.title);
         },
-      }
-    );
-    elements.prepend(card.generateCard());
-  });
-}).catch((error) => {
-  console.warn(`error:${error.message}`);
+      });
+      elements.prepend(card.generateCard());
+    })
+    .catch((error) => {
+      console.warn(`error:${error.message}`);
+    });
 });
 
 /* const popupAddButton = new PopupWithForm(popupAddSelector, (inputValues) => {
