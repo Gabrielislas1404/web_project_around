@@ -7,15 +7,18 @@ export default class Card {
     templateSelector,
     likes,
     isLikedByCurrentUser,
-    { handleCardClick, handleLikeButtonClick }
+    isOwnedByUser,
+    { handleCardClick, handleLikeButtonClick, handleDeleteClick }
   ) {
     this.likes = likes;
     this.isLikedByCurrentUser = isLikedByCurrentUser;
     this.name = name;
     this.link = link;
     this.templateSelector = templateSelector;
+    this.isOwnedByUser = isOwnedByUser;
     this._handleCardClick = handleCardClick;
     this._handleLikeButtonClick = handleLikeButtonClick;
+    this._handleDeleteClick = handleDeleteClick;
   }
 
   _getTemplate() {
@@ -57,7 +60,7 @@ export default class Card {
     const likeNumber = this._cardElement.querySelector(".elements__like");
 
     buttonDelete.addEventListener("click", () => {
-      removeCard(this._cardElement);
+      this._handleDeleteClick(this._cardElement);
     });
 
     openImage.addEventListener("click", this._handleCardClick);
@@ -71,6 +74,9 @@ export default class Card {
   generateCard() {
     this._cardElement = this._getTemplate();
     this._setEventListeners();
+    if (!this.isOwnedByUser) {
+      this._cardElement.querySelector(".elements__trash").remove();
+    }
     return this._cardElement;
   }
 }

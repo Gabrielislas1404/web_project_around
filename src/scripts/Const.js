@@ -1,6 +1,3 @@
-import PopupWithConfirmation from "./PopupWithConfirmation.js";
-import { api } from "../utils/Api.js";
-
 export const pictureButton = document.querySelector(".profile__picture-button");
 export const buttonEdit = document.querySelector(".profile__button");
 export const profileName = document.querySelector(".profile__name");
@@ -32,10 +29,6 @@ export const saveButtonPicture = document.querySelector(
 export const popupAvatarForm = document.querySelector(".popup_profile-button");
 export const avatarForm = document.querySelector(".popup__content_profile");
 export const avatarInput = document.querySelector("#popup__avatar-input");
-export const popupConfirm = new PopupWithConfirmation(
-  ".popup_erase-photo",
-  api
-);
 
 import Brooklyn from "../images/brooklyn.jpg";
 import TimesSquare from "../images/timessquare.jpg";

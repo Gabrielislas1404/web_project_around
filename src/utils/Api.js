@@ -57,7 +57,7 @@ class Api {
   }
 
   addCard(name, link) {
-    return fetch(`${this.baseUrl}/users/me/cards`, {
+    return fetch(`${this.baseUrl}/cards`, {
       headers: this.headers,
       method: "POST",
       body: JSON.stringify({

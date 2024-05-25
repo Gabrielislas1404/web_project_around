@@ -6,7 +6,7 @@ import PopupWithImage from "./scripts/PopupWithImage.js";
 import PopupWithForm from "./scripts/PopupWithForm.js";
 import UserInfo from "./scripts/UserInfo.js";
 import "./pages/index.css";
-
+import PopupWithConfirmation from "./scripts/PopupWithConfirmation.js";
 import {
   avatarInput,
   popupAvatarForm,
@@ -31,9 +31,10 @@ import {
   popupProfileSelector,
   popupPictureSelector,
   popupImageSelector,
-  popupConfirm,
 } from "./scripts/Const.js";
 import { api } from "./utils/Api.js";
+
+const popupConfirm = new PopupWithConfirmation(".popup_erase-photo", api);
 
 buttonEdit.addEventListener("click", function () {
   const userData = userInfo.getUserInfo();
@@ -72,34 +73,56 @@ const popupAddButton = new PopupWithForm(popupAddSelector, (inputValues) => {
   api
     .addCard(inputValues.title, inputValues.link)
     .then((res) => {
-      console.log(res);
-      const card = new Card(res.title, res.link, "#card-template", [], false, {
-        handleCardClick: () => {
-          popupImage.open(res.link, res.title);
-        },
-      });
+      const card = new Card(
+        res.name,
+        res.link,
+        "#card-template",
+        [],
+        false,
+        true,
+        {
+          handleCardClick: () => {
+            popupImage.open(res.link, res.name);
+          },
+          //this function is called when the like button is clicked
+          handleLikeButtonClick: (likesNumberElement) => {
+            // check if the card is liked by the current user
+            const isLikedByCurrentUser = card.getIsLikedByCurrentUser();
+            if (isLikedByCurrentUser) {
+              // if the card is liked by the current user, then remove the like
+              api
+                .unlikeCard(res._id)
+                .then((likeRes) => {
+                  // set the card as not liked by the current user
+                  card.setIsLikedByCurrentUser(false);
+                  // update the number of likes
+                  likesNumberElement.textContent = likeRes.likes.length;
+                })
+                .catch((error) => console.warn(error));
+            } else {
+              // if the card is not liked by the current user, then add the like
+              api
+                .likeCard(res._id)
+                .then((likeRes) => {
+                  // set the card as liked by the current user
+                  card.setIsLikedByCurrentUser(true);
+                  // update the number of likes
+                  likesNumberElement.textContent = likeRes.likes.length;
+                })
+                .catch((error) => console.warn(error));
+            }
+          },
+          handleDeleteClick: (cardElement) => {
+            popupConfirm.openPopup(res._id, cardElement);
+          },
+        }
+      );
       elements.prepend(card.generateCard());
     })
     .catch((error) => {
       console.warn(`error:${error.message}`);
     });
 });
-
-/* const popupAddButton = new PopupWithForm(popupAddSelector, (inputValues) => {
-  const card = new Card(
-    inputValues.title,
-    inputValues.link,
-    "#card-template",
-    [],
-    false,
-    {
-      handleCardClick: () => {
-        popupImage.open(inputValues.link, inputValues.title);
-      },
-    }
-  );
-  elements.prepend(card.generateCard());
-}); */
 
 const userInfo = new UserInfo({
   userNameSelector: ".profile__name",
@@ -128,6 +151,7 @@ api.getInitialCards().then((cards) => {
     {
       items: cards,
       renderer: (item) => {
+        const isOwnedByUser = userId === item.owner._id;
         // check if the card is liked by the current user from the server data
         const isLikedByCurrentUser = checkIsLiked(item.likes, userId);
         const card = new Card(
@@ -136,6 +160,7 @@ api.getInitialCards().then((cards) => {
           "#card-template",
           item.likes,
           isLikedByCurrentUser,
+          isOwnedByUser,
           {
             handleCardClick: () => {
               popupImage.open(item.link, item.name);
@@ -167,6 +192,9 @@ api.getInitialCards().then((cards) => {
                   })
                   .catch((error) => console.warn(error));
               }
+            },
+            handleDeleteClick: (cardElement) => {
+              popupConfirm.openPopup(item._id, cardElement);
             },
           }
         );
