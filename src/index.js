@@ -21,11 +21,8 @@ import {
   formProfile,
   inputName,
   inputOccupation,
-  inputTitle,
-  inputUrl,
   pictureForm,
   addButton,
-  initialCards,
   elements,
   popupAddSelector,
   popupProfileSelector,
@@ -40,11 +37,13 @@ buttonEdit.addEventListener("click", function () {
   const userData = userInfo.getUserInfo();
   inputName.value = userData.userName;
   inputOccupation.value = userData.userOccupation;
+  saveButton.textContent = "Guardar";
   popupProfile.open();
   FormValidatorProfile.enableValidation();
 });
 
 addButton.addEventListener("click", () => {
+  saveButtonPicture.textContent = "Crear";
   popupAddButton.open();
   formValidatorCard.enableValidation();
 });
@@ -70,6 +69,7 @@ const popupPictureProfile = new PopupWithForm(
 );
 
 const popupAddButton = new PopupWithForm(popupAddSelector, (inputValues) => {
+  saveButtonPicture.textContent = "Creando...";
   api
     .addCard(inputValues.title, inputValues.link)
     .then((res) => {
@@ -84,29 +84,24 @@ const popupAddButton = new PopupWithForm(popupAddSelector, (inputValues) => {
           handleCardClick: () => {
             popupImage.open(res.link, res.name);
           },
-          //this function is called when the like button is clicked
+
           handleLikeButtonClick: (likesNumberElement) => {
-            // check if the card is liked by the current user
             const isLikedByCurrentUser = card.getIsLikedByCurrentUser();
             if (isLikedByCurrentUser) {
-              // if the card is liked by the current user, then remove the like
               api
                 .unlikeCard(res._id)
                 .then((likeRes) => {
-                  // set the card as not liked by the current user
                   card.setIsLikedByCurrentUser(false);
-                  // update the number of likes
+
                   likesNumberElement.textContent = likeRes.likes.length;
                 })
                 .catch((error) => console.warn(error));
             } else {
-              // if the card is not liked by the current user, then add the like
               api
                 .likeCard(res._id)
                 .then((likeRes) => {
-                  // set the card as liked by the current user
                   card.setIsLikedByCurrentUser(true);
-                  // update the number of likes
+
                   likesNumberElement.textContent = likeRes.likes.length;
                 })
                 .catch((error) => console.warn(error));
@@ -129,8 +124,6 @@ const userInfo = new UserInfo({
   occupationSelector: ".profile__about-me",
 });
 
-//METODOS DEL SERVER
-
 api
   .getUserInfo()
   .then((userData) => {
@@ -152,7 +145,7 @@ api.getInitialCards().then((cards) => {
       items: cards,
       renderer: (item) => {
         const isOwnedByUser = userId === item.owner._id;
-        // check if the card is liked by the current user from the server data
+
         const isLikedByCurrentUser = checkIsLiked(item.likes, userId);
         const card = new Card(
           item.name,
@@ -165,29 +158,24 @@ api.getInitialCards().then((cards) => {
             handleCardClick: () => {
               popupImage.open(item.link, item.name);
             },
-            //this function is called when the like button is clicked
+
             handleLikeButtonClick: (likesNumberElement) => {
-              // check if the card is liked by the current user
               const isLikedByCurrentUser = card.getIsLikedByCurrentUser();
               if (isLikedByCurrentUser) {
-                // if the card is liked by the current user, then remove the like
                 api
                   .unlikeCard(item._id)
                   .then((res) => {
-                    // set the card as not liked by the current user
                     card.setIsLikedByCurrentUser(false);
-                    // update the number of likes
+
                     likesNumberElement.textContent = res.likes.length;
                   })
                   .catch((error) => console.warn(error));
               } else {
-                // if the card is not liked by the current user, then add the like
                 api
                   .likeCard(item._id)
                   .then((res) => {
-                    // set the card as liked by the current user
                     card.setIsLikedByCurrentUser(true);
-                    // update the number of likes
+
                     likesNumberElement.textContent = res.likes.length;
                   })
                   .catch((error) => console.warn(error));
@@ -207,60 +195,11 @@ api.getInitialCards().then((cards) => {
   cardsSection.renderer();
 });
 
-const newUserInfo = new UserInfo(profileName, profileOccupation);
-buttonEdit.addEventListener("click", () => {
-  profileForm.open();
-  saveButton.textContent = "Guardar";
-  profileForm._getInputValues();
-});
-
 const profileForm = new PopupWithForm(".popup", (inputValues) => {
   saveButton.textContent = "Guardando...";
 
   api.updateUser(inputValues.name, inputValues.occupation);
-  /*   .then((newUser) => {
-      newUserInfo.setUserInfo({
-        name: inputValues.name,
-        about: inputValues.occupation,
-      });
-    })
-    .catch((error) => {
-      console.error("Ha surgido un error", error);
-    }); */
 });
-
-function containerCard(cardSection) {
-  const pictureForm = new PopupWithForm(".popup_add-button", () => {
-    const nameCard = inputTitle.value;
-    const linkCard = inputUrl.value;
-    saveButton.textContent = "Guardando...";
-    api.addCard(nameCard, linkCard).then((card) => {
-      let userId = card.owner._id;
-      const createOneCard = new Card(
-        card,
-        "#card-template",
-        function () {
-          popupImage.open(nameCard, linkCard);
-        },
-        remoteLike,
-        remoteRemoveLike,
-        userId,
-        popupConfirm
-      );
-      const cardElement = createOneCard.generateCard();
-      cardSection.addItem(cardElement, true);
-      saveButtonPicture.textContent = "Crear";
-      inputTitle.value = "";
-      inputUrl.value = "";
-    });
-  });
-  addButton.addEventListener("click", () => {
-    pictureForm.open();
-  });
-  saveButtonPicture.addEventListener("click", () => {
-    pictureForm.close();
-  });
-}
 
 popupAvatarForm.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -277,26 +216,6 @@ popupAvatarForm.addEventListener("submit", (event) => {
       console.error("Error", error);
     });
 });
-
-/* export function formSubmitHandler(formValues) {
-  const name = formValues["input-name"];
-  const about = formValues["occupation"];
-  saveButton.textContent = "Guardando...";
-  api
-    .updateUser(name, about)
-    .then((userData) => {
-      userInfo.setUserInfo({
-        userName: userData.name,
-        userOccupation: userData.about,
-      });
-      saveButton.textContent = "Guardar";
-    })
-    .catch((error) => {
-      console.error("Ha surgido un error:", error);
-    });
-
-  popupProfileSelector.close();
-} */
 
 const FormValidatorProfile = new FormValidator(validationConfig, formProfile);
 FormValidatorProfile.enableValidation();

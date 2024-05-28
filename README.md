@@ -1,12 +1,12 @@
 # Tripleten web_project_around
 
-# Proyecto 4, 5, 6,7 y 8 en Desarrollo Web.
+# Proyecto en Desarrollo Web.
 
 ### Esta es la versión más reciente del proyecto web_project_around.
 
 💻 💻 💻
 
-#### Este página Web comprende hasta ahora mi 4to, 5to y 6t0 proyecto en el bootcamp de desarrollo web en "Tripleten". Realizado con HTML, CSS y JavaScript.
+#### Este página Web comprende desde el 5to al 10mo sprint en el bootcamp de desarrollo web en "Tripleten". Realizado con HTML, CSS y JavaScript.
 
 ##### EL proyecto consiste de una pequeña red social a la que através de los siguientes Sprints se le irán añadiendo funciones con JavaScript para que sea totalmente funcional.
 
@@ -24,6 +24,7 @@ Las funcionalidades con JS son:
 6.Los formularios se cierran haciendo "click" fuera de ellos en cualquier parte de la pantalla o con la tecla "Escape" utilizando el evento "Keydown".
 7.Los formularios validan la información ingresada. En caso de no pasar la validación, los botónes de guardar y crear no se activarán y lanzarán un mensaje de error.
 8.El proyecto se ha adaptado a varios archivos Javascript para hacerlo modular y aprovechar las herramientas de import y export, así como utilizar clases, constructores y métodos.
+9.Ya es posible añadir datos e imágenes a la página web y estos se alojarán en un sevidor. Así aunque demos refresh a la página estos seguirán visibles (a menos que se eliminen o se reescriba la información).
 
 ##### El proyecto ha sido desarrollado con Webpack. Se han utilizado diversos plugins para comunicar los archivos HTML, CSS y javascript sin necesidad de etiquetas así como el uso de imágenes y fuentes.
 

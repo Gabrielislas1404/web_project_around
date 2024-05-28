@@ -36,7 +36,5 @@ export default class PopupWithConfirmation extends Popup {
         event.preventDefault();
         this._handleClickConfirm();
       });
-
-    /* this._buttonDelete.addEventListener("click", this._handleClickConfirm); */
   }
 }

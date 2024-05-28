@@ -42,7 +42,6 @@ export default class Card {
   }
 
   setIsLikedByCurrentUser(isLikedByCurrentUser) {
-    //expects a boolean
     this.isLikedByCurrentUser = isLikedByCurrentUser;
   }
 
